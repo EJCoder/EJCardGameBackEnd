@@ -3,7 +3,7 @@ import random
 import operator
 
 
-def card_deck(extra_deck=False, number=0):
+def card_deck(number=1):
     deck = []
     playing_deck = []
     card_faces = []
@@ -20,35 +20,36 @@ def card_deck(extra_deck=False, number=0):
         for l in range(len(card_faces)):
             card = card_faces[l] + " of " + suits[k]
             deck.append(card)
-            playing_deck.append(card)
+            # playing_deck.append(card)
 
-    if extra_deck:
-        for i in range(number):
-            add_deck = deck.copy()  # originally doubled the size of the deck for every 1+ increase in "number"
-            playing_deck.extend(add_deck)  # added a second deck list to insure the above was resolved (no iteration
-            # accumulation)
-        return playing_deck
-    elif number == 0:
-        return playing_deck
+    for i in range(number):
+        add_deck = deck.copy()  # originally doubled the size of the deck for every 1+ increase in "number"
+        playing_deck.extend(add_deck)  # added a second deck list to insure the above was resolved (no iteration
+        # accumulation)
+    return playing_deck
 
 
-def shuffle_cards(extra_deck=False, number=0):
-    playing_deck = card_deck(extra_deck, number)
+def shuffle_cards(number=1):
+    playing_deck = card_deck(number)
     random.shuffle(playing_deck)
     return playing_deck
 
 
-def cards_deal(number, number_of_players, number_of_cards):
-    if number_of_players == 1:
-        shuffled_deck = random.shuffle(how_many_decks(number))
-        hand_player_1 = random.sample(shuffled_deck, k=number_of_cards)
-        return print(hand_player_1)
-    if number_of_players == 2:
-        shuffled_deck = random.shuffle(how_many_decks(number))
-        hand_player_1 = random.sample(shuffled_deck, k=number_of_cards)
-        hand_player_2 = random.sample(shuffled_deck, k=number_of_cards)
-        return print(hand_player_1, hand_player_2)
+def cards_deal(number_of_players, number_of_cards, playing_cards):
+    players_list = []
+    players_cards = []
+    for player_number in range(number_of_players):
+        players_list.append("Player " + str(player_number+1))
+        player_card = random.sample(playing_cards, number_of_cards)
+        for card in player_card:
+            playing_cards.remove(card)
+        players_cards.append(player_card)
+
+    return print(players_list,
+                 players_cards)
+
 
 
 if __name__ == "__main__":
-    print(len(card_deck(True, 3)))
+    playing_cards = shuffle_cards()
+    cards_deal(1, 1, playing_cards)
