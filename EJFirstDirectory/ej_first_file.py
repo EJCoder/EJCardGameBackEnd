@@ -1,7 +1,4 @@
-from EJFirstDirectory.sample import *
 import random
-import operator
-
 
 def card_deck(number=1):
     deck = []
@@ -45,11 +42,10 @@ def cards_deal(number_of_players, number_of_cards, playing_cards):
             playing_cards.remove(card)
         players_cards.append(player_card)
 
-    return print(players_list,
-                 players_cards)
+    return players_list, players_cards
 
 
 
 if __name__ == "__main__":
     playing_cards = shuffle_cards()
-    cards_deal(1, 1, playing_cards)
+    players_list, players_cards = cards_deal(1, 1, playing_cards)
