@@ -1,0 +1,5 @@
+name: ej-card-game-backend
+channels:
+  - conda-forge
+dependencies:
+  - python=3.6
