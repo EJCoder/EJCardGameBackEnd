@@ -69,7 +69,9 @@ class TestCardDeal(unittest.TestCase):
 
     def test_card_deal_single_player_single_card(self):
         players_list, players_cards = cards_deal(1, 1, four_playing_cards)
+        print()
         self.assertEqual(len(players_list), 1, "Should be: sample")
+        self.assertListEqual(players_list, ["player_1"], "Should be: sample")
         self.assertEqual(len(players_cards), 1, "Should be: sample")
         self.assertEqual(len(players_cards[0]), 1, "Should be: sample")
 
@@ -77,6 +79,7 @@ class TestCardDeal(unittest.TestCase):
         players_list, players_cards = cards_deal(2, 1, four_playing_cards)
         self.assertEqual(len(players_list), 2, "Should be: 2")
         self.assertEqual(len(players_cards), 2, "Should be: 2")
+        self.assertListEqual(players_list, ["player_1", "player_2"], "Should be: sample")
         self.assertEqual(len(players_cards[0]), 1, "Should be: 1")
         self.assertEqual(len(players_cards[1]), 1, "Should be: 1")
 
